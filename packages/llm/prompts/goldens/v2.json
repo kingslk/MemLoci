@@ -1,0 +1,67 @@
+{
+  "prompt_version": "v2",
+  "cases": [
+    {
+      "id": "skip-typo",
+      "stage": "extract",
+      "input": {"title": "fix typo in README", "summary": "correct spelling", "changed_files": [{"path": "README.md"}]},
+      "expect": {"skip": true}
+    },
+    {
+      "id": "skip-lint",
+      "stage": "extract",
+      "input": {"title": "chore: format and lint", "summary": "prettier", "changed_files": [{"path": "src/a.ts"}]},
+      "expect": {"skip": true}
+    },
+    {
+      "id": "skip-lockfile",
+      "stage": "extract",
+      "input": {"title": "update lockfile", "summary": "pnpm-lock", "changed_files": [{"path": "pnpm-lock.yaml"}]},
+      "expect": {"skip": true}
+    },
+    {
+      "id": "extract-upload",
+      "stage": "extract",
+      "input": {
+        "title": "上传取消后仍收到进度回调",
+        "summary": "取消上传后回调仍触发，且 token 过期会重复刷新",
+        "changed_files": [{"path": "src/upload/service.ts"}]
+      },
+      "expect": {"skip": false}
+    },
+    {
+      "id": "synthesize-one-topic",
+      "stage": "synthesize",
+      "input": {
+        "items": [
+          {"title": "上传取消丢弃回调", "problem": "取消后仍更新进度"},
+          {"title": "上传鉴权重试", "problem": "过期 token 重复刷新"}
+        ]
+      },
+      "expect": {"single_memory": true}
+    },
+    {
+      "id": "synthesize-do-not-copy",
+      "stage": "synthesize",
+      "input": {
+        "items": [
+          {
+            "title": "文件上传生命周期",
+            "problem": "上传进度取消异常和鉴权分散",
+            "implementation": {"summary": "mall-admin 的 monorepo packages/upload-kit"}
+          }
+        ]
+      },
+      "expect": {"do_not_copy_required": true}
+    },
+    {
+      "id": "reconcile-human-corrected",
+      "stage": "reconcile",
+      "input": {
+        "draft": {"title": "鉴权重试", "problem": "机器想改掉人工稿"},
+        "existing": [{"id": 9, "title": "鉴权重试", "human_corrected": true}]
+      },
+      "expect": {"action": "NOOP"}
+    }
+  ]
+}

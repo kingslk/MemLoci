@@ -1,0 +1,22 @@
+# 不把本地 Secret 和运行时状态打进镜像。
+.env
+.env.*
+!.env.example
+
+# 本地 Python/Node 依赖无需复制到镜像，Dockerfile 会按锁文件重新安装。
+.venv/
+venv/
+node_modules/
+apps/web/node_modules/
+
+# 构建产物、缓存和版本控制元数据不会参与后端镜像运行。
+apps/web/dist/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.git/
+.gitignore
+
+# 本地运行产生的 Mirror 由 Compose 命名卷提供。
+mirrors/

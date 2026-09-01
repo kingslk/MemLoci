@@ -1,0 +1,57 @@
+[project]
+name = "memloci"
+version = "0.1.0"
+description = "工程记忆系统：从 GitLab 代码与历史中生成可追溯、可迁移的 Agent 上下文。"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "alembic",
+    "dramatiq[redis]",
+    "fastapi",
+    "httpx",
+    "mcp",
+    "openai>=3.0.0",
+    "pgvector",
+    "psycopg[binary]",
+    "pydantic",
+    "pydantic-settings",
+    "sqlalchemy",
+    "tree-sitter",
+    "tree-sitter-language-pack",
+    "uvicorn[standard]",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "ruff",
+]
+
+[project.scripts]
+memloci-api = "apps.api.main:run"
+memloci-mcp = "apps.mcp.server:run"
+memloci-worker = "apps.worker.main:run"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["apps*", "packages*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["B008"]
+
+[tool.ruff.format]
+quote-style = "double"

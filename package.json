@@ -1,0 +1,10 @@
+{
+  "name": "memloci",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "web:dev": "pnpm --dir apps/web dev",
+    "web:build": "pnpm --dir apps/web build",
+    "web:preview": "pnpm --dir apps/web preview"
+  }
+}
