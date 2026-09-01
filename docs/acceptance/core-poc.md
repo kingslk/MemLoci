@@ -1,5 +1,7 @@
 # Core Dual-Repo POC 验收记录
 
+真实仓库只走环境变量，不要写回脚本默认值。约定见 `.agents/decisions.md`「验收不写死真实仓库」。
+
 ## 目标
 
 验证：

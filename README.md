@@ -315,6 +315,7 @@ GET /api/v1/projects/{id}/graphs/combined?repository_id={repo_id}
 
 ## 开发规范与注释规范
 
+- 给编码 Agent 的入口是 `AGENTS.md`；设计意图按需读 `.agents/decisions.md`。`docs/` 是给人看的长文，不作为每次任务必读。
 - 核心注释解释“为什么”和业务约束，不逐行翻译代码。
 - 非平凡的幂等、状态转换、安全和边界逻辑必须有测试。
 - 新增模型必须有 Alembic Migration；新增 HTTP/MCP Schema 必须同步文档。

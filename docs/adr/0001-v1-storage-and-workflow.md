@@ -2,6 +2,7 @@
 
 - 状态：accepted
 - 日期：2026-08-13
+- 存活摘要：`.agents/decisions.md`「PostgreSQL 承载图与 Workflow」
 
 ## 背景
 

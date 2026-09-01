@@ -1,5 +1,7 @@
 # MemLoci 备份与恢复
 
+事实源边界的设计意图见 `.agents/decisions.md`「PostgreSQL 承载图与 Workflow」。本文只写运维步骤。
+
 ## PostgreSQL
 
 PostgreSQL 是 Project、Evidence、Memory、DreamRun 和 Workflow State 的事实源。生产环境使用定期 `pg_dump`，不要把 Secret 放进命令行历史：
